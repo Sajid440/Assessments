@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+ <head> 
+     <meta charset="UTF-8"> 
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+     <title> Date Interval </title> 
+     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/"> 
+     <link rel="stylesheet" href="Date Interval.css"> 
+     <style> 
+        * 
+          { 
+             margin: 0; 
+             padding: 0; 
+             box-sizing: border-box; 
+             font-family: arial; 
+          } 
+        body 
+        { 
+             height: 100vh; 
+             display: flex; 
+             justify-content: center; 
+             align-items: center; 
+             background-color: lightsteelblue; 
+        } 
+  
+         .heading 
+        { 
+            font-size: 28px; 
+            font-weight: lighter; 
+             border-bottom: 1px solid rgb(0, 183, 255); 
+        } 
+         .ft 
+        { 
+        font-weight: bold; 
+        padding-top: 10px; 
+        } 
+ /* .date1, .date2 */ 
+        input[type=date] 
+        {  
+         width: 150px; 
+        height: 30px; 
+         padding: 5px 10px; 
+         margin: 10px 0 0 10px; 
+        font-size: 15px; 
+       cursor: pointer; 
+        }
+         #calculate 
+        { 
+        width: 100px; 
+        height: 30px; 
+        margin: 10px 0 10px 0; 
+        background-color: rgb(0, 149, 207); 
+        color: #fff; 
+        border: none; 
+        border-radius: 3px; 
+        font-size: 15px; 
+         cursor: pointer; 
+         } 
+     </style> 
+ </head> 
+ <body> 
+  
+     <table> 
+         <tr align="center"> 
+             <th colspan="2" class="heading"> Date Interval </th> 
+         </tr> 
+         <tr> 
+             <td class="ft"> From : </td> 
+             <td><input type="date" id="fromDate" class="form-control"></td> 
+         </tr> 
+         <tr> 
+             <td class="ft"> To : </td> 
+             <td><input type="date" id="toDate" class="form-control"></td> 
+         </tr> 
+         <tr align="center"> 
+             <td colspan="2">  
+                 <input type="submit" value="Calculate" id="calculate" onclick="calculateDataDetails()"> 
+             </td> 
+         </tr> 
+         <tr> 
+             <td colspan="2"> 
+                 <div id="result" class="alert alert-info" style="display: none;"> </div> 
+             </td> 
+         </tr> 
+     </table> 
+  
+     <script>function calculateDataDetails() { 
+         var fromDate = new Date(document.getElementById("fromDate").value); 
+         var toDate = new Date(document.getElementById("toDate").value); 
+  
+         if (isNaN(fromDate) || isNaN(toDate))  
+         { 
+             alert("Please Select Valid Dates !") 
+             return;     
+         } 
+  
+         var TimeDiff = toDate.getTime() - fromDate.getTime(); 
+         var DaysDiff = Math.ceil(TimeDiff / (1000 * 3600 * 24)); 
+         var WeeksDiff = Math.ceil(DaysDiff / 7); 
+         var MonthsDiff = (toDate.getMonth() + 1) - (fromDate.getMonth() + 1) + (toDate.getFullYear() - fromDate.getFullYear()) * 12; 
+         var YearDiff = toDate.getFullYear() - fromDate.getFullYear(); 
+  
+         var result = document.getElementById("result"); 
+         result.innerHTML = "Date Internal between" + "<br>"; 
+         result.innerHTML += fromDate.toDateString() + " and " + toDate.toDateString() + "<hr><hr>";  
+         result.innerHTML += "In Years : " + YearDiff + "<br>"; 
+         result.innerHTML += "In Months : " + MonthsDiff + "<br>"; 
+         result.innerHTML += "In Weeks : " + WeeksDiff + "<br>"; 
+         result.innerHTML += "In days : " + DaysDiff + "<hr><hr>"; 
+         result.style.display = "block"; 
+     }
+     </script> 
+  
+ </body>
+ </html>
