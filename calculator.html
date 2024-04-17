@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            align-content: center;
+        }
+
+        .cont {
+            height: fit-content;
+            width: fit-content;
+            border: 2px solid purple;
+            margin-left: 40%;
+
+        }
+
+        input[type="button"] {
+            background-color: black;
+            color: white;
+            height: 60px;
+            width: 60px;
+            /* margin-left: 0px; */
+            border: solid 1px white;
+        }
+
+        input[type="text"] {
+            /* border: solid 2px black; */
+            width: 250px;
+            height: 50px;
+            margin-bottom: 5px;
+            color: black;
+            background-color: darksalmon;
+        }
+
+        input[type="button"]:hover {
+            background-color: white;
+            color: black;
+            border: solid 2px black;
+
+        }
+        .del{
+            color: red;
+        }
+
+        .del:hover {
+            background-color: red !important;
+            color: white !;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="cont">
+            <input type="text" disabled id="display">
+            <div class="one">
+                <input type="button" value="c" onclick="clearDisplay()">
+                <input type="button" value="%" onclick="main('%')">
+                <input type="button" value="del" onclick="del()" class="del">
+                <input type="button" value="/" onclick="main('/')">
+
+            </div>
+            <div class="one">
+                <input type="button" value="7" onclick="main('7')">
+                <input type="button" value="8" onclick="main('8')">
+                <input type="button" value="9" onclick="main('9')">
+                <input type="button" value="*" onclick="main('*')">
+
+            </div>
+            <div class="one">
+                <input type="button" value="4" onclick="main('4')">
+                <input type="button" value="5" onclick="main('5')">
+                <input type="button" value="6" onclick="main('6')">
+                <input type="button" value="-" onclick="main('-')">
+
+
+            </div>
+            <div>
+                <input type="button" value="1" onclick="main('1')">
+                <input type="button" value="2" onclick="main('2')">
+                <input type="button" value="3" onclick="main('3')">
+                <input type="button" value="+" onclick="main('+')">
+            </div>
+            <div>
+                <input type="button" value="00" onclick="main('1')">
+                <input type="button" value="0" onclick="main('2')">
+                <input type="button" value="." onclick="main('3')">
+                <input type="button" value="=" onclick="calculate()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function main(value) {
+            document.getElementById("display").value += value
+        }
+
+
+        function calculate() {
+            let a = document.getElementById("display").value;
+            let result;
+            try {
+                result = eval(a)
+            }
+            catch (error) {
+                result = "error"
+                document.getElementById("display").style.color = "red"
+            }
+            document.getElementById("display").value = result;
+        }
+
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+
+        function del() {
+            document.getElementById("display").value = display.value.toString().slice(0, -1);
+        }
+
+    </script>
+</body>
+
+</html>
